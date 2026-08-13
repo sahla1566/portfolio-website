@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahla Sana — AI, Data & Robotics Engineer</title>
+<meta name="description" content="Portfolio of Sahla Sana — AI Engineer, Data Scientist and Mechatronics Engineer specializing in AI automation, computer vision and embedded robotics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — CIRCUIT SLATE NEUMORPHISM ============ */
+:root{
+  --bg:#E4E9F0;
+  --bg-deep:#D2DDEA;
+  --surface:#EFF3F8;
+  --text:#141B26;
+  --text-soft:#4E5C76;
+  --text-faint:#8290A8;
+  --accent:#1E8A8C;
+  --accent-strong:#146567;
+  --accent-soft:#CDEAEA;
+  --gold:#D9A441;
+  --gold-soft:#F3E3BC;
+  --shadow-d:#B7C2D3;
+  --shadow-l:#FFFFFF;
+  --radius-lg:24px;
+  --radius-md:16px;
+  --radius-sm:10px;
+  --maxw:1180px;
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:linear-gradient(160deg, var(--bg) 0%, #EAF0F5 100%);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  position:relative;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%20viewBox='0%200%20160%20160'%3E%3Cg%20fill='none'%20stroke='%231E8A8C'%20stroke-opacity='0.10'%20stroke-width='1.4'%3E%3Cpath%20d='M0%2040H50V80H160'/%3E%3Cpath%20d='M0%20120H90V90H160'/%3E%3Cpath%20d='M30%200V30H10V160'/%3E%3Cpath%20d='M130%200V50H150V160'/%3E%3C/g%3E%3Cg%20fill='%23D9A441'%20fill-opacity='0.16'%3E%3Ccircle%20cx='50'%20cy='80'%20r='3.2'/%3E%3Ccircle%20cx='90'%20cy='90'%20r='3.2'/%3E%3Ccircle%20cx='30'%20cy='30'%20r='3.2'/%3E%3Ccircle%20cx='150'%20cy='50'%20r='3.2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:220px 220px;
+  z-index:0;pointer-events:none;
+}
+header, main, footer, .modal-overlay, .mobile-drawer{position:relative;z-index:1;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+::selection{background:var(--accent-soft);color:var(--accent-strong);}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+@media(max-width:640px){.wrap{padding:0 20px;}}
+
+/* ============ NEUMORPHIC PRIMITIVES ============ */
+.neu-raised{
+  background:var(--surface);
+  box-shadow:9px 9px 18px var(--shadow-d), -9px -9px 18px var(--shadow-l);
+  border-radius:var(--radius-lg);
+}
+.neu-flat{
+  background:var(--surface);
+  box-shadow:6px 6px 12px var(--shadow-d), -6px -6px 12px var(--shadow-l);
+  border-radius:var(--radius-md);
+}
+.neu-pressed{
+  background:var(--bg);
+  box-shadow:inset 5px 5px 10px var(--shadow-d), inset -5px -5px 10px var(--shadow-l);
+  border-radius:var(--radius-md);
+}
+.neu-pill{
+  background:var(--surface);
+  box-shadow:4px 4px 8px var(--shadow-d), -4px -4px 8px var(--shadow-l);
+  border-radius:999px;
+}
+
+/* ============ TYPE ============ */
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;color:var(--text);letter-spacing:-0.01em;}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:22px;height:2px;background:var(--gold);border-radius:2px;}
+.section-title{font-size:clamp(28px,3.6vw,40px);margin-bottom:12px;}
+.section-lead{color:var(--text-soft);font-size:16.5px;max-width:640px;margin-bottom:44px;}
+.mono-stat{font-family:var(--font-mono);}
+
+/* ============ NAV ============ */
+header{
+  position:sticky;top:0;z-index:500;
+  background:rgba(228,233,240,0.88);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(183,194,211,0.5);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px;}
+.logo{
+  font-family:var(--font-display);font-weight:700;font-size:19px;
+  display:flex;align-items:center;gap:12px;
+}
+.logo-mark{
+  width:38px;height:38px;border-radius:12px;
+  background:var(--surface);
+  box-shadow:4px 4px 8px var(--shadow-d), -4px -4px 8px var(--shadow-l);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);font-family:var(--font-mono);font-size:13px;font-weight:600;
+}
+nav.primary{display:flex;align-items:center;gap:4px;}
+.nav-item{position:relative;}
+.nav-link{
+  display:flex;align-items:center;gap:5px;
+  padding:10px 15px;border-radius:10px;
+  font-size:14.5px;font-weight:500;color:var(--text-soft);
+  transition:color .15s, background .15s;
+}
+.nav-link:hover, .nav-link.active{color:var(--accent);background:var(--bg-deep);}
+.nav-link svg{width:11px;height:11px;opacity:0.7;}
+.mega{
+  position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);
+  width:560px;padding:22px;
+  opacity:0;visibility:hidden;translate:0 8px;
+  transition:opacity .18s, translate .18s, visibility .18s;
+  z-index:50;
+}
+.nav-item:hover .mega, .nav-item:focus-within .mega{opacity:1;visibility:visible;translate:0 0;}
+.mega-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.mega-link{
+  display:block;padding:12px 13px;border-radius:12px;
+  transition:background .15s;
+}
+.mega-link:hover{background:var(--bg-deep);}
+.mega-link .t{font-weight:600;font-size:13.8px;display:block;margin-bottom:3px;}
+.mega-link .d{font-size:12px;color:var(--text-faint);line-height:1.45;}
+.nav-cta{display:flex;align-items:center;gap:10px;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:12px;
+  font-size:14px;font-weight:600;font-family:var(--font-body);
+  transition:transform .15s, box-shadow .15s;
+}
+.btn:active{transform:scale(0.97);}
+.btn-primary{
+  background:var(--accent);color:#F4FBFB;
+  box-shadow:5px 5px 12px var(--shadow-d), -3px -3px 8px var(--shadow-l);
+}
+.btn-primary:hover{background:var(--accent-strong);}
+.btn-ghost{
+  background:var(--surface);color:var(--text);
+  box-shadow:5px 5px 10px var(--shadow-d), -5px -5px 10px var(--shadow-l);
+}
+.btn-ghost:hover{color:var(--accent);}
+.btn-sm{padding:9px 16px;font-size:13px;}
+.menu-toggle{display:none;}
+
+@media(max-width:1020px){
+  nav.primary, .nav-cta .btn-ghost{display:none;}
+  .menu-toggle{display:flex;width:44px;height:44px;border-radius:12px;align-items:center;justify-content:center;}
+}
+
+/* ============ MOBILE NAV DRAWER ============ */
+.mobile-drawer{
+  position:fixed;inset:0;z-index:900;
+  background:var(--bg);
+  transform:translateX(100%);transition:transform .3s ease;
+  overflow-y:auto;padding:24px;
+}
+.mobile-drawer.open{transform:translateX(0);}
+.mobile-drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;}
+.mobile-link{
+  display:block;padding:16px 6px;font-size:19px;font-weight:600;font-family:var(--font-display);
+  border-bottom:1px solid var(--shadow-d);
+}
+.mobile-sub{padding-left:14px;margin-bottom:8px;}
+.mobile-sub a{display:block;padding:9px 6px;font-size:14px;color:var(--text-soft);}
+
+/* ============ PAGES ============ */
+.page{display:none;}
+.page.active{display:block;animation:fadeUp .4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+main{min-height:70vh;}
+
+/* ============ HERO ============ */
+.hero{padding:88px 0 70px;}
+.hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;}
+.hero-title{font-size:clamp(34px,4.6vw,54px);line-height:1.08;margin-bottom:22px;}
+.hero-title .hl{color:var(--accent);}
+.hero-sub{font-size:17px;color:var(--text-soft);max-width:520px;margin-bottom:34px;}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px;}
+.hero-socials{display:flex;gap:10px;}
+.icon-btn{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--surface);
+  box-shadow:4px 4px 9px var(--shadow-d), -4px -4px 9px var(--shadow-l);
+  display:flex;align-items:center;justify-content:center;color:var(--text-soft);
+  transition:color .15s, transform .15s;
+}
+.icon-btn:hover{color:var(--accent);transform:translateY(-2px);}
+
+.network-card{
+  aspect-ratio:1/1;position:relative;padding:0;overflow:hidden;
+}
+.network-card svg{width:100%;height:100%;display:block;}
+.network-card .sys-line{
+  stroke:var(--accent-soft);stroke-width:2.2;stroke-dasharray:7 9;
+  animation:sysFlow 4s linear infinite;
+}
+.network-card .sys-node{
+  fill:var(--surface);stroke:var(--accent);stroke-width:2.8;
+  transform-box:fill-box;transform-origin:center;
+  animation:sysPulse 3s ease-in-out infinite;
+}
+.network-card .sys-node.core{
+  fill:var(--accent);stroke:var(--accent);stroke-width:3;
+}
+.network-card .sys-core-ring{
+  fill:none;stroke:var(--accent-soft);stroke-width:2;opacity:.7;
+  transform-box:fill-box;transform-origin:center;
+  animation:coreRing 3s ease-in-out infinite;
+}
+.network-card .sys-signal{
+  fill:var(--gold);filter:drop-shadow(0 0 4px var(--gold));
+  animation:signalPulse 2.6s ease-in-out infinite;
+}
+.network-card .sys-inner-line{stroke:var(--gold);stroke-width:2;opacity:.8;}
+.network-card .sys-inner-node{
+  fill:var(--accent);transform-box:fill-box;transform-origin:center;
+  animation:innerPulse 2s ease-in-out infinite;
+}
+.network-card .sys-label{
+  font-family:var(--font-mono);font-size:13px;font-weight:600;
+  letter-spacing:1.2px;fill:var(--text-soft);text-anchor:middle;
+}
+@keyframes sysFlow{to{stroke-dashoffset:-64;}}
+@keyframes sysPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes coreRing{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(1.16);opacity:.9}}
+@keyframes signalPulse{0%,100%{opacity:.25;transform:scale(.55)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes innerPulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+@media(prefers-reduced-motion:reduce){
+  .network-card *{animation:none!important;}
+}
+
+.domain-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px;
+}
+@media(max-width:900px){.domain-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.domain-grid{grid-template-columns:1fr;}.hero-grid{grid-template-columns:1fr;}}
+.domain-card{padding:24px;transition:transform .2s, box-shadow .2s;cursor:pointer;}
+.domain-card:hover{transform:translateY(-4px);}
+.domain-icon{
+  width:46px;height:46px;border-radius:13px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;color:var(--accent);
+  background:var(--bg);box-shadow:inset 3px 3px 6px var(--shadow-d), inset -3px -3px 6px var(--shadow-l);
+}
+.domain-card h3{font-size:16px;margin-bottom:7px;}
+.domain-card p{font-size:13.5px;color:var(--text-soft);}
+
+section{padding:78px 0;}
+.section-alt{background:rgba(210,221,234,0.4);}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+.about-text p{color:var(--text-soft);margin-bottom:16px;font-size:15.5px;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+.stat-card{padding:22px;text-align:left;}
+.stat-num{font-family:var(--font-mono);font-size:30px;font-weight:600;color:var(--accent);}
+.stat-label{font-size:12.5px;color:var(--text-soft);margin-top:4px;}
+.about-panel{padding:32px;}
+.about-panel h4{font-size:14px;margin-bottom:18px;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.08em;font-family:var(--font-mono);font-weight:500;}
+.timeline-mini{display:flex;flex-direction:column;gap:0;}
+.timeline-mini li{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--shadow-d);}
+.timeline-mini li:last-child{border-bottom:none;}
+.tm-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0;}
+.tm-year{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);}
+.tm-title{font-size:14px;font-weight:600;}
+
+/* ============ EXPERTISE ============ */
+.expertise-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;}
+.tab-btn{padding:10px 18px;border-radius:11px;font-size:13.5px;font-weight:600;color:var(--text-soft);}
+.tab-btn.active{background:var(--accent);color:#fff;box-shadow:4px 4px 9px var(--shadow-d);}
+.tab-btn:not(.active){background:var(--surface);box-shadow:4px 4px 9px var(--shadow-d), -4px -4px 9px var(--shadow-l);}
+.expertise-panel{display:none;}
+.expertise-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:40px;animation:fadeUp .3s ease;}
+@media(max-width:860px){.expertise-panel.active{grid-template-columns:1fr;}}
+.exp-desc h3{font-size:24px;margin-bottom:12px;}
+.exp-desc p{color:var(--text-soft);font-size:15px;margin-bottom:22px;}
+.chip-row{display:flex;flex-wrap:wrap;gap:9px;}
+.chip{
+  font-family:var(--font-mono);font-size:12px;padding:7px 13px;
+  color:var(--accent-strong);
+}
+.exp-tools{padding:26px;}
+.exp-tools h4{font-size:12.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-soft);margin-bottom:14px;font-family:var(--font-mono);font-weight:500;}
+
+/* ============ PROGRAMMING ============ */
+.prog-group{margin-bottom:44px;}
+.prog-group h3{font-size:13px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--text-soft);margin-bottom:18px;}
+.prog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:900px){.prog-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.prog-grid{grid-template-columns:1fr;}}
+.prog-card{padding:22px;}
+.prog-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.prog-icon{
+  width:38px;height:38px;border-radius:10px;background:var(--bg);
+  box-shadow:inset 3px 3px 6px var(--shadow-d), inset -3px -3px 6px var(--shadow-l);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-weight:600;font-size:12px;color:var(--accent);
+}
+.prog-card h4{font-size:15.5px;}
+.prog-card p{font-size:12.5px;color:var(--text-soft);margin-bottom:10px;}
+.prog-related{font-size:11px;color:var(--text-faint);font-family:var(--font-mono);}
+
+/* ============ PROJECTS ============ */
+.project-controls{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;margin-bottom:30px;}
+.search-box{
+  display:flex;align-items:center;gap:10px;padding:12px 18px;flex:1;min-width:220px;max-width:360px;
+}
+.search-box input{
+  border:none;background:none;outline:none;font-size:14px;color:var(--text);width:100%;font-family:var(--font-body);
+}
+.search-box svg{width:16px;height:16px;color:var(--text-faint);flex-shrink:0;}
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:38px;}
+.filter-chip{padding:9px 16px;border-radius:10px;font-size:13px;font-weight:600;color:var(--text-soft);}
+.filter-chip.active{background:var(--accent);color:#fff;box-shadow:4px 4px 9px var(--shadow-d);}
+.filter-chip:not(.active){background:var(--surface);box-shadow:4px 4px 9px var(--shadow-d), -4px -4px 9px var(--shadow-l);}
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+@media(max-width:980px){.project-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.project-grid{grid-template-columns:1fr;}}
+.project-card{padding:0;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s;}
+.project-card:hover{transform:translateY(-4px);}
+.project-thumb{
+  height:130px;display:flex;align-items:center;justify-content:center;
+  background:var(--bg);box-shadow:inset 4px 4px 9px var(--shadow-d), inset -4px -4px 9px var(--shadow-l);
+  color:var(--accent);overflow:hidden;
+}
+.project-thumb svg{width:100%;height:100%;}
+.project-body{padding:22px;flex:1;display:flex;flex-direction:column;}
+.project-cat{font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:8px;}
+.project-card h3{font-size:16.5px;margin-bottom:8px;}
+.project-card p{font-size:13.3px;color:var(--text-soft);margin-bottom:14px;flex:1;}
+.tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.tech-tag{font-family:var(--font-mono);font-size:10.5px;background:var(--bg);padding:5px 9px;border-radius:6px;color:var(--text-soft);}
+.project-actions{display:flex;gap:8px;}
+.link-btn{font-size:12.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:5px;}
+.no-results{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-faint);}
+
+/* modal */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(20,27,38,0.5);backdrop-filter:blur(3px);
+  z-index:1000;display:none;align-items:flex-start;justify-content:center;
+  padding:60px 20px;overflow-y:auto;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  max-width:720px;width:100%;padding:38px;position:relative;background:var(--surface);
+  border-radius:var(--radius-lg);box-shadow:20px 20px 40px rgba(20,27,38,0.3);
+  max-height:90vh;overflow-y:auto;
+}
+.modal-close{
+  position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;color:var(--text-soft);
+}
+.modal-close:hover{color:var(--accent);}
+.modal-box h3{font-size:24px;margin-bottom:6px;padding-right:30px;}
+.modal-cat{font-family:var(--font-mono);font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:22px;}
+.case-block{margin-bottom:18px;}
+.case-block h5{font-size:11.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);font-family:var(--font-mono);margin-bottom:6px;}
+.case-block p{font-size:14px;color:var(--text-soft);line-height:1.6;}
+.modal-tech{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0;}
+.modal-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;align-items:center;}
+.status-note{
+  display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;
+  background:var(--bg);box-shadow:inset 3px 3px 7px var(--shadow-d), inset -3px -3px 7px var(--shadow-l);
+  font-size:12.5px;color:var(--text-soft);flex:1;min-width:220px;
+}
+.status-note svg{flex-shrink:0;color:var(--gold);}
+.modal-visual{
+  width:100%;height:190px;margin:20px 0;border-radius:12px;
+  background:var(--bg);box-shadow:inset 4px 4px 9px var(--shadow-d), inset -4px -4px 9px var(--shadow-l);
+  display:flex;align-items:center;justify-content:center;color:var(--accent);overflow:auto;
+}
+.modal-visual svg{width:100%;height:100%;padding:16px;}
+.visual-caption{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);text-align:center;margin-top:-12px;margin-bottom:18px;}
+
+/* ============ EXPERIENCE ============ */
+.timeline{position:relative;padding-left:36px;}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--shadow-d);}
+.tl-entry{position:relative;padding-bottom:44px;}
+.tl-entry:last-child{padding-bottom:0;}
+.tl-marker{
+  position:absolute;left:-36px;top:4px;width:18px;height:18px;border-radius:50%;
+  background:var(--accent);border:4px solid var(--bg);box-shadow:0 0 0 2px var(--shadow-d);
+}
+.tl-card{padding:26px 28px;}
+.tl-date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);margin-bottom:6px;}
+.tl-role{font-size:18px;margin-bottom:2px;}
+.tl-org{font-size:13.5px;color:var(--accent);font-weight:600;margin-bottom:14px;}
+.tl-list{margin-bottom:14px;}
+.tl-list li{font-size:13.8px;color:var(--text-soft);padding-left:16px;position:relative;margin-bottom:6px;}
+.tl-list li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
+.tl-tech{display:flex;flex-wrap:wrap;gap:6px;}
+
+/* ============ EDUCATION ============ */
+.edu-top{padding:28px 30px;margin-bottom:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.edu-top-inner{display:flex;gap:18px;align-items:center;}
+.edu-icon{
+  width:52px;height:52px;border-radius:14px;flex-shrink:0;background:var(--bg);
+  box-shadow:inset 3px 3px 7px var(--shadow-d), inset -3px -3px 7px var(--shadow-l);
+  display:flex;align-items:center;justify-content:center;color:var(--accent);
+}
+.edu-top h3{font-size:18px;margin-bottom:4px;}
+.edu-top p{font-size:13.5px;color:var(--text-soft);}
+.edu-link{color:var(--accent);font-weight:600;}
+.accordion-item{margin-bottom:12px;overflow:hidden;}
+.accordion-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 24px;font-weight:600;font-size:14.5px;
+}
+.accordion-head svg{width:14px;height:14px;transition:transform .2s;color:var(--accent);}
+.accordion-item.open .accordion-head svg{transform:rotate(180deg);}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.accordion-item.open .accordion-body{max-height:400px;}
+.accordion-inner{padding:0 24px 20px;display:flex;flex-wrap:wrap;gap:8px;}
+
+/* ============ RESUME ============ */
+.resume-layout{display:grid;grid-template-columns:0.9fr 1.5fr;gap:40px;}
+@media(max-width:860px){.resume-layout{grid-template-columns:1fr;}}
+.resume-side{padding:28px;height:fit-content;position:sticky;top:100px;}
+.resume-side h4{font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-soft);font-family:var(--font-mono);margin-bottom:14px;}
+.resume-side .btn{width:100%;justify-content:center;margin-bottom:10px;}
+.resume-note{font-size:11.5px;color:var(--text-faint);margin-top:14px;line-height:1.5;}
+.resume-block{margin-bottom:34px;}
+.resume-block h3{font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);font-family:var(--font-mono);margin-bottom:16px;}
+.resume-block .neu-flat{padding:24px;}
+.res-skill-cat{margin-bottom:14px;}
+.res-skill-cat span.k{font-weight:600;font-size:13.5px;display:block;margin-bottom:6px;}
+
+/* ============ GITHUB ============ */
+.repo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+@media(max-width:760px){.repo-grid{grid-template-columns:1fr;}}
+.repo-card{padding:24px;}
+.repo-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.repo-top h4{font-size:15.5px;}
+.repo-card p{font-size:13px;color:var(--text-soft);margin-bottom:14px;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:16px;}
+.contact-info p{color:var(--text-soft);margin-bottom:28px;}
+.contact-links{display:flex;flex-direction:column;gap:12px;}
+.contact-link{display:flex;align-items:center;gap:14px;padding:16px 18px;}
+.contact-link .ic{
+  width:38px;height:38px;border-radius:10px;background:var(--bg);
+  box-shadow:inset 3px 3px 6px var(--shadow-d), inset -3px -3px 6px var(--shadow-l);
+  display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;
+}
+.contact-link .lbl{font-size:11.5px;color:var(--text-faint);}
+.contact-link .val{font-size:14px;font-weight:600;}
+.contact-form{padding:34px;}
+.form-row{margin-bottom:18px;}
+.form-row label{display:block;font-size:12.5px;font-weight:600;color:var(--text-soft);margin-bottom:8px;}
+.form-row input, .form-row textarea{
+  width:100%;border:none;padding:14px 16px;font-family:var(--font-body);font-size:14px;color:var(--text);
+  background:var(--bg);box-shadow:inset 4px 4px 8px var(--shadow-d), inset -4px -4px 8px var(--shadow-l);
+  border-radius:12px;outline:none;
+}
+.form-row textarea{resize:vertical;min-height:110px;}
+.form-row input:focus, .form-row textarea:focus{box-shadow:inset 4px 4px 8px var(--shadow-d), inset -4px -4px 8px var(--shadow-l), 0 0 0 2px var(--accent-soft);}
+.form-msg{display:none;padding:14px 16px;border-radius:12px;background:var(--accent);color:#fff;font-size:13.5px;margin-top:14px;font-weight:600;}
+.form-msg.show{display:block;animation:fadeUp .3s ease;}
+
+/* ============ FOOTER ============ */
+footer{padding:40px 0;border-top:1px solid var(--shadow-d);}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-inner p{font-size:13px;color:var(--text-faint);}
+.footer-links{display:flex;gap:18px;}
+.footer-links a{font-size:13px;color:var(--text-soft);}
+.footer-links a:hover{color:var(--accent);}
+
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-faint);margin-bottom:26px;font-family:var(--font-mono);}
+.breadcrumb a:hover{color:var(--accent);}
+
+@media(prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <a href="#home" class="logo" data-nav="home">
+      <span class="logo-mark">SS</span>
+      Sahla Sana
+    </a>
+    <nav class="primary" id="primaryNav"></nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-ghost btn-sm" data-nav="contact">Contact</a>
+      <a href="#resume" class="btn btn-primary btn-sm" data-nav="resume">Resume</a>
+    </div>
+    <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer-head">
+    <span class="logo"><span class="logo-mark">SS</span>Sahla Sana</span>
+    <button class="icon-btn" id="menuClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div id="mobileNavList"></div>
+</div>
+
+<main id="main"></main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>© 2025 Sahla Sana. Circuit-slate neumorphism, built by hand.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/sahla-sana-a9b8691b1" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/sahla1566" target="_blank" rel="noopener">GitHub</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<script>
+const NAV = [
+  {id:'home', label:'Home'},
+  {id:'about', label:'About'},
+  {id:'expertise', label:'Expertise', mega:[
+    {id:'ai-ml', t:'AI & ML', d:'Generative AI, computer vision, LLMs, predictive modeling'},
+    {id:'data-science', t:'Data Science', d:'Analysis, statistics, visualization, dashboards'},
+    {id:'ai-automation', t:'AI Automation', d:'Workflows, OCR, chatbots, document automation'},
+    {id:'web-apps', t:'Web & App Dev', d:'Responsive, API-driven, AI-integrated applications'},
+    {id:'embedded', t:'Embedded Systems', d:'Arduino, ESP32, STM32, PIC, Raspberry Pi'},
+    {id:'robotics', t:'Robotics & Mechatronics', d:'Control systems, sensors, actuators, IoT'},
+  ]},
+  {id:'programming', label:'Programming', mega:[
+    {id:'prog', t:'Web', d:'HTML · CSS · JavaScript · PHP', anchor:'web'},
+    {id:'prog', t:'AI / Data', d:'Python · R · SQL', anchor:'aidata'},
+    {id:'prog', t:'Embedded', d:'C · C++ · MicroPython', anchor:'embedded-lang'},
+  ]},
+  {id:'projects', label:'Projects'},
+  {id:'experience', label:'Experience'},
+  {id:'education', label:'Education'},
+  {id:'resume', label:'Resume'},
+  {id:'contact', label:'Contact'},
+];
+
+const DOMAINS = [
+  {icon:'brain', title:'AI & ML', desc:'Generative AI, LLMs, computer vision and predictive systems.', link:'ai-ml'},
+  {icon:'chart', title:'Data Science', desc:'Analysis, visualization and business intelligence.', link:'data-science'},
+  {icon:'bolt', title:'AI Automation', desc:'Workflows, document and communication automation.', link:'ai-automation'},
+  {icon:'code', title:'Web & Apps', desc:'Responsive, API-driven, AI-integrated applications.', link:'web-apps'},
+  {icon:'chip', title:'Embedded Systems', desc:'Arduino, ESP32, STM32, PIC and Raspberry Pi builds.', link:'embedded'},
+  {icon:'robot', title:'Robotics & Mechatronics', desc:'Sensors, actuators, motion and control systems.', link:'robotics'},
+];
+
+const EXPERTISE = {
+  'ai-ml': {
+    title:'AI & ML', desc:'Designing and deploying intelligent systems — from autonomous agents to real-time perception — that turn raw signals into decisions.',
+    skills:['Generative AI','LLM & Prompt Engineering','AI Agents','Computer Vision','YOLOv8 Object Detection','Predictive Modeling','TensorFlow Lite','Deep Learning'],
+    tools:['Python','PyTorch','TensorFlow','OpenCV','YOLOv8','Hugging Face','LangChain','OpenAI / Claude APIs']
+  },
+  'data-science': {
+    title:'Data Science', desc:'Turning messy, real-world data into statistically sound, decision-ready insight — from exploration through to dashboards stakeholders actually use.',
+    skills:['Data Analysis','Exploratory Data Analysis','Statistics','Predictive Analytics','Data Visualization','Business Intelligence','SQL & Databases'],
+    tools:['Python','Pandas','NumPy','Matplotlib','Plotly','SQL','MySQL','Power BI','Tableau']
+  },
+  'ai-automation': {
+    title:'AI Automation', desc:'Building automation pipelines that remove repetitive work — document processing, CRM updates, customer conversations — so teams spend time on judgment.',
+    skills:['Workflow Automation','Chatbots & Conversational AI','OCR & Document Analysis','Invoice Automation','CRM Automation','Email Automation','API Integration'],
+    tools:['Make.com','Zapier','n8n','Power Automate','UiPath','LLM APIs','AI APIs']
+  },
+  'web-apps': {
+    title:'Web & App Development', desc:'Building responsive, API-connected applications with AI woven in as a core feature, not a bolt-on.',
+    skills:['HTML & CSS','JavaScript','PHP','Responsive Design','REST APIs','Databases','UI/UX Design','AI Integration'],
+    tools:['JavaScript','PHP','MySQL','REST APIs','Git','HTML5','CSS3','AI SDKs']
+  },
+  'embedded': {
+    title:'Embedded Systems', desc:'Firmware and hardware integration across microcontroller families — from prototyping on Arduino to industrial control on STM32.',
+    skills:['Arduino Development','ESP32 & WiFi','STM32 & ARM','PIC Microcontrollers','Raspberry Pi','Sensor Integration','Motor Control','IoT Protocols'],
+    tools:['C','C++','MicroPython','Embedded C','STM32CubeIDE','Arduino IDE','PlatformIO']
+  },
+  'robotics': {
+    title:'Robotics & Mechatronics', desc:'Bridging mechanical, electronic and software systems — motors, drivers, sensors and control loops working as one integrated machine.',
+    skills:['Robotics Design','Embedded Control','Sensor Fusion','Actuator Control','Motor Drivers','IoT & Connectivity','Electronics','Mechanical Integration'],
+    tools:['Motor Drivers','PID Control','IoT Protocols','CAD Basics','Control Systems','Power Electronics']
+  },
+};
+
+const PROGRAMMING = {
+  web:[
+    {name:'HTML', tag:'HTML5', desc:'Semantic structure for accessible, well-formed interfaces.', related:'Web dashboards, responsive layouts'},
+    {name:'CSS', tag:'CSS3', desc:'Responsive layout, neumorphic styling and design systems.', related:'UI systems, accessibility'},
+    {name:'JavaScript', tag:'JS', desc:'Interactivity, DOM control and lightweight client-side logic.', related:'AI-integrated web apps, dashboards'},
+    {name:'PHP', tag:'PHP', desc:'Server-side logic and database-driven application backends.', related:'API servers, form processing'},
+  ],
+  aidata:[
+    {name:'Python', tag:'PY', desc:'Core language for AI, ML pipelines, automation and data analysis.', related:'ML models, data pipelines, scripts'},
+    {name:'R', tag:'R', desc:'Statistical computing, exploratory analysis and visualization.', related:'Statistical modeling, analysis'},
+    {name:'SQL', tag:'SQL', desc:'Querying, joining and shaping structured data at scale.', related:'BI dashboards, ETL pipelines'},
+  ],
+  'embedded-lang':[
+    {name:'C', tag:'C', desc:'Low-level firmware for microcontrollers and real-time systems.', related:'PIC16F877A, embedded automation'},
+    {name:'C++', tag:'C++', desc:'Object-oriented embedded development and robotics firmware.', related:'Arduino, STM32, robotics control'},
+    {name:'MicroPython', tag:'μPY', desc:'Rapid prototyping on ESP32 and Raspberry Pi hardware.', related:'IoT prototypes, home automation'},
+  ]
+};
+
+const PROJECTS = [
+  {
+    title:'AI-Powered Object Detection System', cats:['AI','ML'], platform:'Python/Computer Vision', visual:'detection',
+    desc:'Real-time object detection using YOLOv8 for identifying and tracking multiple object classes from live video streams.',
+    tech:['Python','YOLOv8','OpenCV','TensorFlow Lite'], hardware:'GPU / Edge Device',
+    case:{
+      problem:'Manual visual monitoring is slow and error-prone; batch processing adds latency.',
+      objective:'Build a sub-100ms detection pipeline that identifies multiple object classes in real-time with >90% accuracy.',
+      architecture:'Video input → frame preprocessing → YOLOv8 inference → bounding-box tracking → annotated output stream.',
+      technologies:'Python, YOLOv8, OpenCV, NumPy, TensorFlow Lite for optimization.',
+      hardware:'GPU-accelerated workstation (RTX series) for training; edge-capable device (Jetson Nano / TPU) for inference.',
+      software:'Custom training pipeline with dataset augmentation, inference optimization, and visualization layer.',
+      implementation:'Model fine-tuned on custom dataset with data augmentation. OpenCV handles frame preprocessing and bounding-box rendering. Inference loop optimized for 30+ FPS at 1080p.',
+      results:'Achieved ~92% mAP, 45 FPS inference on GPU, 18 FPS on edge device (Jetson Nano). False-positive rate <5% under varied lighting.',
+      challenges:'Class imbalance required weighted loss tuning; lighting variance caused ~8% accuracy drop in outdoor scenes; edge deployment constrained by memory.',
+      future:'Deploy to multi-camera setup with sensor fusion; add temporal tracking for smoother detections; extend to real-time instance segmentation.'
+    }, github:'https://github.com/sahla1566/object-detection-yolov8', status:'Benchmarked at 45 FPS on GPU and 18 FPS on a Jetson Nano edge device — demoed on live camera feed, not web-hosted.'
+  },
+  {
+    title:'RFID Secure Access Control', cats:['Embedded','IoT'], platform:'Arduino UNO', visual:'schematic',
+    schematic:{mcu:'Arduino UNO', mid:'RC522 Reader', out:'Servo Lock', sensor:'Buzzer + LED'},
+    desc:'RFID-based secure access system with Arduino, serving as a proof-of-concept for low-cost, auditable door access.',
+    tech:['C++','RFID-RC522','Servo Motor'], hardware:'Arduino UNO, RFID-RC522, Servo, Buzzer, LEDs',
+    case:{
+      problem:"Physical key-based access is easy to duplicate and lacks any audit trail; mechanical locks don't scale.",
+      objective:'Build a sub-$50 card-based access system with immediate visual/audio feedback and UID-based authorization.',
+      architecture:'RFID reader → Arduino UNO → tag validation against whitelist → servo lock control + feedback buzzer/LED.',
+      technologies:'C++ (Arduino), RFID-RC522 library, servo control library.',
+      hardware:'Arduino UNO, RC522 RFID module, SG90 servo motor, passive buzzer, RGB LED, power supply.',
+      software:'Arduino sketch with UID whitelist stored in EEPROM; interrupt-driven tag reader; state-machine access control.',
+      implementation:'RFID reader scans tag UID via SPI. Arduino checks against authorized list in EEPROM. Match → servo unlocks + green LED + success tone. Mismatch → red LED + error buzzer for 3 seconds.',
+      results:'Read range: 5-10cm (tuned antenna); response time: <200ms per scan; false-reject rate: <2%; power: ~200mA active, <5mA idle.',
+      challenges:'Read range limited by antenna design; electromagnetic interference in nearby relay areas; EEPROM limited to ~1000 tags.',
+      future:'Add SD card logging for audit trails; integrate with smartphone app via Bluetooth; support multiple reader zones.'
+    }, github:'https://github.com/sahla1566/rfid-access-control', status:'Working benchtop prototype — demonstrated on a physical door-lock rig, no hosted demo applicable.'
+  },
+  {
+    title:'Interactive LED Event Wall', cats:['Embedded','IoT'], platform:'ESP32', visual:'schematic',
+    schematic:{mcu:'ESP32', mid:'WiFi Server', out:'WS2812B Matrix', sensor:'Level Shifter'},
+    desc:'Wi-Fi-controlled LED matrix for live events, allowing real-time pattern changes from any device without rewiring.',
+    tech:['MicroPython / C++','WiFi','WS2812B LEDs'], hardware:'ESP32, Addressable LED Strip, Power Supply',
+    case:{
+      problem:'Event displays required manual configuration; changing patterns meant stopping the event or using wired controls.',
+      objective:'Enable real-time, web-based pattern control for a 2m×2m addressable LED matrix accessible from any phone.',
+      architecture:'Web control panel → ESP32 WiFi server → SPI LED driver → WS2812B addressable LED matrix.',
+      technologies:'MicroPython (or C++ via Arduino IDE), FastLED library, ESP32 WiFi stack.',
+      hardware:'ESP32 dev board, 256x WS2812B LEDs (or equivalent matrix), 5V/15A power supply, logic-level shifter.',
+      software:'Lightweight web server on ESP32 hosting an HTML/JS control UI; pattern engine with real-time parameter updates.',
+      implementation:'User selects pattern, color, speed from web UI. ESP32 receives HTTP request, updates pattern parameters, refreshes LED output at 30 FPS.',
+      results:'<100ms response time from web UI to LED update; supported 10+ simultaneous connections; ran for 8-hour event without drop.',
+      challenges:'Power delivery to all LEDs required careful PSU sizing and capacitor placement; WiFi congestion at events with many devices; thermal issues with sustained high brightness.',
+      future:'Add DMX support for professional lighting rigs; implement sound-reactive presets; support multiple synchronized walls via MQTT.'
+    }, github:'https://github.com/sahla1566/esp32-led-wall', status:'Ran live for 8 hours at a real event on local WiFi — no persistent hosted demo by design.'
+  },
+  {
+    title:'Smart Industrial Conveyor Control System', cats:['Embedded','Automation'], platform:'STM32', visual:'schematic',
+    schematic:{mcu:'STM32F4', mid:'Motor Driver', out:'DC Motor', sensor:'IR Sensor'},
+    desc:'STM32-based industrial conveyor controller with sensor-triggered sorting logic for automated product routing.',
+    tech:['Embedded C','STM32F4','Motor Control'], hardware:'STM32 board, IR sensors, DC motor + driver',
+    case:{
+      problem:'Manual sorting on a conveyor line is slow, inconsistent, and labor-intensive; no real-time throughput feedback.',
+      objective:'Automate item detection and routing based on infrared sensors, achieving 98%+ sorting accuracy at 60 items/min.',
+      architecture:'IR/proximity sensors → STM32 control loop → motor driver → sorting actuator. Local SD logging for production metrics.',
+      technologies:'Embedded C, STM32CubeIDE, standard C libraries; STM32F4 PWM and ADC peripherals.',
+      hardware:'STM32F4 board, 3x IR sensors, DC motor with L298N driver, relay for sorting actuator, SD card module.',
+      software:'Interrupt-driven sensor handling; polling-based state machine; PID loop for motor speed control.',
+      implementation:'IR sensors detect item presence and route it into categories. STM32 calculates timing to move the diverter actuator mid-conveyor. Speed controlled via PWM to maintain 60 items/min rate.',
+      results:'Sorting accuracy: 98.2%; throughput: 62 items/min average; error rate: 0.3%; uptime: 95% (failures due to sensor misalignment).',
+      challenges:'Sensor drift over 24h operation required calibration routine; electromagnetic noise from motor affected sensor readings; timing critical for high-speed sorting.',
+      future:'Add machine-learning classification for product variants; integrate with MES via Ethernet; add predictive maintenance alerts.'
+    }, github:'#', status:'Built for an industrial client pilot line — proprietary firmware, not publicly released.'
+  },
+  {
+    title:'Data Analysis & Funnel Analysis Project', cats:['Data Science'], platform:'Python/Analytics', visual:'dashboard',
+    desc:'Customer funnel analysis using Python to identify conversion bottlenecks, drop-off stages, and optimization opportunities.',
+    tech:['Python','Pandas','Plotly','SQL'], hardware:'—',
+    case:{
+      problem:'Stakeholders had no visibility into where users were dropping off in the conversion funnel; guessing at fixes wasted budget.',
+      objective:'Build an interactive dashboard quantifying drop-off at each stage and identifying the top 3 friction points.',
+      architecture:'SQL queries (MySQL) → Python data pipeline (Pandas) → statistical analysis → interactive Plotly dashboard.',
+      technologies:'Python, Pandas, NumPy, SQL, Plotly, Jupyter.',
+      hardware:'—',
+      software:'Python data pipeline with automated weekly refresh; Plotly dashboard embedded in internal web portal.',
+      implementation:'Extracted user journey data from MySQL. Calculated conversion rates stage-by-stage. Segmented by traffic source and device type. Visualized in interactive dashboard with drill-down capabilities.',
+      results:'Identified mobile checkout as 35% drop-off point (vs 8% on desktop). Recommended mobile UX redesign, expected to recover 12-15% conversion lift.',
+      challenges:'Data quality issues (incomplete sessions) required robust filtering logic; high cardinality dimensions (user agents) slowed queries; stakeholder interpretation of metrics varied.',
+      future:'Add cohort analysis and retention metrics; implement anomaly detection for real-time alerts; export segmented user lists for targeted campaigns.'
+    }, github:'https://github.com/sahla1566/data-funnel-analysis', status:'Delivered as an internal Plotly dashboard — see the results above; walkthrough available on request.'
+  },
+  {
+    title:'Remote Controlled Cleaning Robot', cats:['Robotics','Mechatronics'], platform:'Arduino-based', visual:'robot',
+    desc:'Compact mobile robot with RF remote control, suited for autonomous cleaning of small spaces.',
+    tech:['Arduino','Motor Drivers','RF Module'], hardware:'Chassis, DC Motors, RF TX/RX, Arduino Mega',
+    case:{
+      problem:'Manual cleaning is repetitive and time-consuming; existing robots were too expensive and over-featured for small spaces.',
+      objective:'Build a low-cost, easily controllable cleaning platform suitable for home/office automation.',
+      architecture:'RF remote → receiver module → Arduino Mega → motor driver → drive motors + cleaning attachment.',
+      technologies:'C++ (Arduino), RF 433MHz protocol, basic motor control.',
+      hardware:'2-motor chassis, DC motors, L298N dual motor driver, RF 433MHz TX/RX modules, 6V power pack, cleaning brush motor.',
+      software:'Arduino sketch with RF packet parsing; command mapping to differential-drive motor outputs.',
+      implementation:'Operator sends RF commands (forward/back/turn). Arduino receives via RF module, parses command, adjusts motor PWM for differential steering. Cleaning brush runs continuously.',
+      results:'Operating range: 50m line-of-sight; response latency: <100ms; runtime per charge: 2 hours; cleaning coverage: ~20 m².',
+      challenges:'RF interference in multi-bot scenarios; chassis traction varies with floor surface; battery management required tuning to avoid brownout.',
+      future:'Add ultrasonic sensors for basic obstacle avoidance; implement autonomous vacuum behavior; integrate LIDAR for mapping.'
+    }, github:'#', status:'Personal hardware prototype — video walkthrough of it running available on request.'
+  },
+  {
+    title:'PIC-Based Sensor Automation Unit', cats:['Embedded'], platform:'PIC16F877A', visual:'schematic',
+    schematic:{mcu:'PIC16F877A', mid:'ADC / GPIO', out:'Relay ×8', sensor:'Analog Sensors'},
+    desc:'Low-cost, low-power embedded automation controller managing multiple sensor inputs and actuator outputs.',
+    tech:['Embedded C','ADC','Relay Control'], hardware:'PIC16F877A, sensors, relay module',
+    case:{
+      problem:'Industrial sensor/actuator systems needed a dedicated, low-cost controller compatible with legacy hardware.',
+      objective:'Deploy a reliable micro-controller that reads analog sensors, applies threshold logic, and drives actuator relays.',
+      architecture:'Sensor array (temperature, pressure, level) → PIC16F877A ADC/GPIO → decision logic → relay outputs.',
+      technologies:'Embedded C, MPLAB, standard microcontroller libraries.',
+      hardware:'PIC16F877A microcontroller, 8-channel relay module, analog sensor array (temp, pressure, level), 5V regulated PSU.',
+      software:'Polling-based sensor read loop; fixed threshold logic (no runtime reprogramming); relay control via GPIO.',
+      implementation:'PIC continuously samples ADC channels every 100ms. Threshold comparison triggers relay outputs. Hysteresis logic prevents relay chatter.',
+      results:'Reliable 99.5% uptime in factory environment; response time: <500ms; noise immunity: ±2% tolerance with filtering.',
+      challenges:'ADC noise required analog filtering and averaging; limited program memory constrained feature set; no data logging capability.',
+      future:'Migrate to ARM Cortex-M0 for more memory and peripherals; add SD card logging; expose REST API for remote monitoring.'
+    }, github:'#', status:'Deployed on a factory floor pilot — proprietary build, code not publicly released.'
+  },
+  {
+    title:'Home Automation System', cats:['Embedded','IoT'], platform:'Raspberry Pi', visual:'schematic',
+    schematic:{mcu:'Raspberry Pi', mid:'Flask + GPIO', out:'Relay Module', sensor:'Temp / Motion'},
+    desc:'Python-driven smart home controller managing lights, climate, and appliances via a unified interface.',
+    tech:['Raspberry Pi','Python','GPIO'], hardware:'RPi, relay module, sensor array',
+    case:{
+      problem:'Multiple appliances had no integrated control; remote access required separate apps for each device.',
+      objective:'Build a unified home automation hub supporting scheduling, remote access, and sensor-triggered actions.',
+      architecture:'Sensors → Raspberry Pi (Python) → relay module → appliances. Web UI for control.',
+      technologies:'Python, Flask (web framework), GPIO library (RPi.GPIO), cron for scheduling.',
+      hardware:'Raspberry Pi 3/4, 8-channel relay module, temperature/motion/light sensors, 12V power supply.',
+      software:'Python daemon managing GPIO and scheduling; Flask web server for UI and API.',
+      implementation:'Pi reads sensor states continuously. User sets rules (if temp > 28°C, turn on AC). Cron jobs handle time-based automation. Web UI displays status and allows manual control.',
+      results:'Supported 16 connected devices; response time: <1s; cloud-free operation (fully local); energy monitoring showed 12% consumption reduction.',
+      challenges:'GPIO reliability issues with long relay lead runs; WiFi stability in older home infrastructure; Python dependency management across updates.',
+      future:'Add voice control (Alexa/Google); integrate with energy-monitoring hardware; implement machine-learning-based occupancy detection.'
+    }, github:'https://github.com/sahla1566/home-automation-rpi', status:'Runs locally on a home Raspberry Pi — fully offline by design, so there is no public hosted demo.'
+  },
+];
+
+const EXPERIENCE = [
+  {
+    role:'AI & Robotics Trainer', org:'Future Minds Education, Ajman, UAE', date:'Dec 2025 – Present',
+    points:[
+      'Deliver hands-on training in AI, Generative AI, Python, robotics, machine learning and data analytics.',
+      'Develop practical AI projects involving LLMs, AI automation, computer vision and intelligent systems.',
+      'Design technical curricula and guide learners through project development, testing and implementation.'
+    ], tech:['Python','Generative AI','Machine Learning','Robotics','Curriculum Design']
+  },
+  {
+    role:'Freelance AI Automation Developer', org:'Self-Employed, Remote', date:'Oct 2025 – Present',
+    points:[
+      'Develop LLM-powered AI workflows, chatbots and intelligent automation solutions for business operations.',
+      'Integrate AI systems with APIs, webhooks, databases, CRM platforms, Gmail and third-party applications.',
+      'Build automated solutions using Make.com, n8n, Zapier, Power Automate, OCR and cloud-based AI tools.'
+    ], tech:['n8n','Make.com','Zapier','LLM APIs','Chatbots','OCR']
+  },
+  {
+    role:'Embedded Systems Engineer', org:'Evolve Robotics, Kerala, India', date:'Jan 2023 – Jun 2024',
+    points:[
+      'Developed and optimized embedded software for robotics, automation and intelligent control systems.',
+      'Programmed and integrated microcontrollers, sensors, motors, IoT devices and hardware interfaces.',
+      'Performed system testing, debugging, troubleshooting and technical documentation.'
+    ], tech:['C','C++','Arduino','ESP32','STM32','Motor Control']
+  },
+  {
+    role:'Robotics Engineer Intern', org:'Evolve Robotics, Kerala, India', date:'Jul 2022 – Dec 2022',
+    points:[
+      'Supported the development and testing of robotics, embedded systems and IoT applications.',
+      'Developed microcontroller-based projects using Arduino, ESP32, sensors and actuators.',
+      'Assisted with hardware integration, firmware testing, debugging and prototype development.'
+    ], tech:['Robotics','Sensors','Motor Control','Arduino']
+  },
+  {
+    role:'Data Science / Data Analytics', org:'Boston Institute of Analytics', date:'6 months, 2024',
+    points:[
+      'Executed data science projects using Python, Pandas and SQL for exploratory data analysis and visualization.',
+      'Performed data cleaning, funnel analysis and trend analysis on real business datasets.',
+      'Presented data-driven insights via interactive Plotly dashboards to stakeholders.'
+    ], tech:['Python','Pandas','SQL','Data Analysis','Plotly']
+  },
+];
+
+const EDUCATION = {
+  degree:{title:'B.Tech, Mechatronics Engineering', sub:'Malabar College of Engineering and Technology, Kerala, India — affiliated to A P J Abdul Kalam Technological University | CGPA: 7.64/10 | Graduated 2022', link:'https://malabarcet.ac.in/'},
+  categories:[
+    {name:'AI & Generative AI', items:['Applied Machine Learning','Deep Learning Fundamentals','Generative AI & Prompt Engineering','Computer Vision (YOLOv8)','LLM APIs & Integration']},
+    {name:'Data Science', items:['Data Analysis with Python','Statistics for Data Science','SQL for Analytics','Data Visualization (Plotly/Matplotlib)','Business Intelligence']},
+    {name:'Programming', items:['Python Programming','Advanced Python','Embedded C / C++','Web Development (HTML/CSS/JS)','PHP Backend']},
+    {name:'Power BI & Tableau', items:['Power BI Dashboard Design','Tableau Visualization','Data Modeling']},
+    {name:'Cloud & Automation', items:['Azure AI Studio','Azure OpenAI','Azure Machine Learning','Workflow Automation (n8n / Make)','RPA Fundamentals']},
+    {name:'Robotics & Embedded', items:['Arduino & Microcontrollers','ESP32 IoT Development','STM32 ARM Programming','Sensor & Actuator Integration']},
+  ]
+};
+
+const REPOS = [
+  {name:'object-detection-yolov8', desc:'Real-time object detection using YOLOv8 and OpenCV for video stream processing.', lang:['Python']},
+  {name:'rfid-access-control', desc:'Arduino UNO RFID-based secure access control with servo lock and feedback system.', lang:['C++']},
+  {name:'esp32-led-wall', desc:'WiFi-controlled addressable LED event wall with web UI pattern control.', lang:['C++','MicroPython']},
+  {name:'home-automation-rpi', desc:'Raspberry Pi smart home controller managing multiple IoT devices and sensors via Python.', lang:['Python']},
+  {name:'data-funnel-analysis', desc:'Python data pipeline for customer funnel analysis with Plotly dashboards.', lang:['Python']},
+];
+
+const ICONS = {
+  brain:'<path d="M9 3a3 3 0 0 0-3 3v.3A3 3 0 0 0 4 9v1a3 3 0 0 0 1 2.2V14a3 3 0 0 0 3 3h1v2a1 1 0 0 0 2 0v-2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M15 3a3 3 0 0 1 3 3v.3A3 3 0 0 1 20 9v1a3 3 0 0 1-1 2.2V14a3 3 0 0 1-3 3h-1v2a1 1 0 0 1-2 0v-2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>',
+  chart:'<path d="M4 20V10M12 20V4M20 20v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/>',
+  code:'<path d="m9 18-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  chip:'<rect x="7" y="7" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M9 3v4M15 3v4M9 21v-4M15 21v-4M3 9h4M3 15h4M21 9h-4M21 15h-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+  robot:'<rect x="5" y="9" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 5v4M9 4h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="9.5" cy="14" r="1.2" fill="currentColor"/><circle cx="14.5" cy="14" r="1.2" fill="currentColor"/>',
+  linkedin:'<rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M7.5 10v6.5M7.5 7.5v.01M11.5 16.5V10M11.5 12.7c0-1.5 1-2.7 2.6-2.7 1.6 0 2.4 1 2.4 2.9v3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+  github:'<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.7 5.4 3 5.4 3a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.4c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.1-.5 2V21" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>',
+  pin:'<path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6" fill="none"/>',
+  search:'<circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  chev:'<path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  download:'<path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  external:'<path d="M14 4h6v6M20 4 10 14M9 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  info:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 11v5.5M12 8v.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  building:'<path d="M6 21V6l6-3 6 3v15" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M9 21v-5h6v5M9 10h.01M15 10h.01M9 13.5h.01M15 13.5h.01M12 6.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+};
+function icon(name, size=20){return '<svg viewBox="0 0 24 24" width="'+size+'" height="'+size+'" fill="none">'+(ICONS[name]||'')+'</svg>';}
+
+/* ============ RELEVANT PROJECT VISUALS ============ */
+function dashboardSVG(){
+  return '<svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">'+
+    '<defs><linearGradient id="gradD" x1="0%" y1="0%" x2="0%" y2="100%">'+
+    '<stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.85" />'+
+    '<stop offset="100%" style="stop-color:var(--accent);stop-opacity:0.15" /></linearGradient></defs>'+
+    '<rect x="10" y="70" width="30" height="40" fill="url(#gradD)" rx="3"/>'+
+    '<rect x="50" y="45" width="30" height="65" fill="url(#gradD)" rx="3"/>'+
+    '<rect x="90" y="85" width="30" height="25" fill="var(--gold)" opacity="0.75" rx="3"/>'+
+    '<rect x="130" y="30" width="30" height="80" fill="url(#gradD)" rx="3"/>'+
+    '<rect x="170" y="60" width="30" height="50" fill="var(--gold)" opacity="0.75" rx="3"/>'+
+    '<rect x="210" y="20" width="30" height="90" fill="url(#gradD)" rx="3"/>'+
+    '<rect x="250" y="55" width="30" height="55" fill="var(--gold)" opacity="0.75" rx="3"/>'+
+    '<line x1="0" y1="112" x2="290" y2="112" stroke="var(--text-faint)" stroke-width="1" opacity="0.5"/>'+
+    '<path d="M10 95 L50 75 L90 92 L130 60 L170 82 L210 45 L250 70" fill="none" stroke="var(--accent-strong)" stroke-width="2" stroke-dasharray="3,3" opacity="0.6"/>'+
+    '<text x="10" y="132" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--text-faint)">Landing</text>'+
+    '<text x="90" y="132" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--text-faint)">Cart</text>'+
+    '<text x="170" y="132" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--text-faint)">Checkout</text>'+
+    '<text x="250" y="132" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--text-faint)">Paid</text>'+
+    '<text x="10" y="160" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="var(--accent)">Funnel Conversion by Stage</text>'+
+    '</svg>';
+}
+
+function schematicSVG(labels){
+  labels = labels || {mcu:'MCU', mid:'Driver', out:'Actuator', sensor:'Sensor'};
+  return '<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">'+
+    '<rect x="14" y="35" width="66" height="34" fill="var(--surface)" stroke="var(--accent)" stroke-width="2" rx="5"/>'+
+    '<text x="47" y="56" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="var(--accent)">'+labels.mcu+'</text>'+
+    '<rect x="118" y="35" width="66" height="34" fill="var(--surface)" stroke="var(--accent)" stroke-width="2" rx="5"/>'+
+    '<text x="151" y="56" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--accent)">'+labels.mid+'</text>'+
+    '<rect x="222" y="35" width="66" height="34" fill="var(--surface)" stroke="var(--accent)" stroke-width="2" rx="5"/>'+
+    '<text x="255" y="56" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--accent)">'+labels.out+'</text>'+
+    '<rect x="118" y="125" width="66" height="34" fill="var(--surface)" stroke="var(--gold)" stroke-width="2" rx="5"/>'+
+    '<text x="151" y="146" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--gold)">'+labels.sensor+'</text>'+
+    '<line x1="80" y1="52" x2="118" y2="52" stroke="var(--accent)" stroke-width="2"/>'+
+    '<circle cx="80" cy="52" r="3" fill="var(--accent)"/><circle cx="118" cy="52" r="3" fill="var(--accent)"/>'+
+    '<line x1="184" y1="52" x2="222" y2="52" stroke="var(--accent)" stroke-width="2"/>'+
+    '<circle cx="184" cy="52" r="3" fill="var(--accent)"/><circle cx="222" cy="52" r="3" fill="var(--accent)"/>'+
+    '<line x1="151" y1="69" x2="151" y2="125" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4,3"/>'+
+    '<circle cx="151" cy="125" r="3" fill="var(--gold)"/>'+
+    '<line x1="47" y1="69" x2="47" y2="178" stroke="var(--text-faint)" stroke-width="1.4" stroke-dasharray="2,2"/>'+
+    '<circle cx="47" cy="178" r="3" fill="var(--text-faint)"/>'+
+    '<text x="55" y="182" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--text-faint)">Power / GND</text>'+
+    '</svg>';
+}
+
+function robotSVG(){
+  return '<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">'+
+    '<rect x="80" y="70" width="140" height="70" rx="14" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.2"/>'+
+    '<circle cx="100" cy="150" r="20" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.2"/>'+
+    '<circle cx="100" cy="150" r="6" fill="var(--accent)"/>'+
+    '<circle cx="200" cy="150" r="20" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.2"/>'+
+    '<circle cx="200" cy="150" r="6" fill="var(--accent)"/>'+
+    '<rect x="105" y="85" width="90" height="18" rx="4" fill="var(--gold)" opacity="0.35"/>'+
+    '<text x="150" y="98" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="var(--accent-strong)">Cleaning Brush</text>'+
+    '<rect x="105" y="112" width="90" height="18" rx="4" fill="var(--bg)" stroke="var(--accent)" stroke-width="1.4"/>'+
+    '<text x="150" y="125" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="var(--accent)">Arduino Mega + Driver</text>'+
+    '<line x1="150" y1="70" x2="150" y2="35" stroke="var(--gold)" stroke-width="2.2"/>'+
+    '<circle cx="150" cy="30" r="6" fill="none" stroke="var(--gold)" stroke-width="2.2"/>'+
+    '<circle cx="150" cy="30" r="2" fill="var(--gold)"/>'+
+    '<text x="150" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--gold)">RF Antenna</text>'+
+    '<path d="M40 40 Q60 60 80 90" fill="none" stroke="var(--text-faint)" stroke-width="1.6" stroke-dasharray="4,3"/>'+
+    '<text x="14" y="35" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--text-faint)">RF TX (Remote)</text>'+
+    '</svg>';
+}
+
+function detectionSVG(){
+  return '<svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg">'+
+    '<rect x="8" y="8" width="284" height="174" rx="8" fill="var(--bg)" stroke="var(--text-faint)" stroke-width="1.2" stroke-dasharray="3,3"/>'+
+    '<rect x="35" y="35" width="90" height="120" rx="4" fill="none" stroke="var(--accent)" stroke-width="2.4"/>'+
+    '<rect x="32" y="22" width="76" height="18" rx="3" fill="var(--accent)"/>'+
+    '<text x="70" y="35" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#fff">person 0.94</text>'+
+    '<rect x="150" y="70" width="110" height="75" rx="4" fill="none" stroke="var(--gold)" stroke-width="2.4"/>'+
+    '<rect x="150" y="55" width="92" height="18" rx="3" fill="var(--gold)"/>'+
+    '<text x="196" y="68" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#141B26">backpack 0.87</text>'+
+    '<rect x="185" y="20" width="65" height="45" rx="4" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.7"/>'+
+    '<text x="217" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="var(--accent)">door 0.78</text>'+
+    '<line x1="8" y1="170" x2="292" y2="170" stroke="var(--text-faint)" stroke-width="1" opacity="0.4"/>'+
+    '<text x="14" y="184" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--text-faint)">YOLOv8 · 45 FPS · 1080p input</text>'+
+    '</svg>';
+}
+
+function projectVisualSVG(p){
+  if(p.visual==='dashboard') return dashboardSVG();
+  if(p.visual==='schematic') return schematicSVG(p.schematic);
+  if(p.visual==='robot') return robotSVG();
+  if(p.visual==='detection') return detectionSVG();
+  return '';
+}
+function visualCaption(p){
+  if(p.visual==='dashboard') return 'Illustrative dashboard — funnel stages and conversion drop-off';
+  if(p.visual==='schematic') return 'Illustrative wiring schematic — signal path (teal) and sensor feedback (gold)';
+  if(p.visual==='robot') return 'Illustrative chassis layout — drive, brush and RF link';
+  if(p.visual==='detection') return 'Illustrative detection output — bounding boxes and class confidence';
+  return '';
+}
+
+function buildNav(){
+  const primary = document.getElementById('primaryNav');
+  primary.innerHTML = NAV.map(item=>{
+    if(item.mega){
+      return '<div class="nav-item">'+
+        '<a href="#'+item.id+'" class="nav-link" data-nav="'+item.id+'">'+item.label+' '+icon('chev',11)+'</a>'+
+        '<div class="mega neu-raised"><div class="mega-grid">'+
+          item.mega.map(m=>'<a class="mega-link" href="#'+item.id+'" data-nav="'+item.id+'" data-sub="'+(m.anchor||m.id)+'">'+
+            '<span class="t">'+m.t+'</span><span class="d">'+m.d+'</span></a>').join('')+
+        '</div></div></div>';
+    }
+    return '<a href="#'+item.id+'" class="nav-link" data-nav="'+item.id+'">'+item.label+'</a>';
+  }).join('');
+
+  const mobileList = document.getElementById('mobileNavList');
+  mobileList.innerHTML = NAV.map(item=>{
+    let sub='';
+    if(item.mega){
+      sub = '<div class="mobile-sub">'+item.mega.map(m=>'<a href="#'+item.id+'" data-nav="'+item.id+'" data-sub="'+(m.anchor||m.id)+'">'+m.t+'</a>').join('')+'</div>';
+    }
+    return '<a href="#'+item.id+'" class="mobile-link" data-nav="'+item.id+'">'+item.label+'</a>'+sub;
+  }).join('');
+}
+
+function networkSVG(){
+  const nodes = [
+    {x:250,y:78,l:'AI'},
+    {x:398,y:160,l:'DATA'},
+    {x:398,y:340,l:'SOFTWARE'},
+    {x:250,y:422,l:'ROBOTICS'},
+    {x:102,y:340,l:'VISION'},
+    {x:102,y:160,l:'AUTOMATION'}
+  ];
+  const edges = nodes.map((n)=>'<line class="sys-line" x1="250" y1="250" x2="'+n.x+'" y2="'+n.y+'"/>').join('');
+  const outer = nodes.map((n,i)=>'<circle class="sys-node '+(i===0?'core':'')+'" cx="'+n.x+'" cy="'+n.y+'" r="'+(i===0?16:12)+'"/>').join('');
+  const signals = nodes.map((n,i)=>'<circle class="sys-signal" cx="'+n.x+'" cy="'+n.y+'" r="4" style="animation-delay:'+(i*.42)+'s"/>').join('');
+  const innerLines =
+    '<line class="sys-inner-line" x1="226" y1="226" x2="250" y2="250"/>'+
+    '<line class="sys-inner-line" x1="274" y1="226" x2="250" y2="250"/>'+
+    '<line class="sys-inner-line" x1="226" y1="274" x2="250" y2="250"/>'+
+    '<line class="sys-inner-line" x1="274" y1="274" x2="250" y2="250"/>';
+  const innerNodes =
+    '<circle class="sys-inner-node" cx="226" cy="226" r="6"/>'+
+    '<circle class="sys-inner-node" cx="274" cy="226" r="6" style="animation-delay:.25s"/>'+
+    '<circle class="sys-inner-node" cx="226" cy="274" r="6" style="animation-delay:.5s"/>'+
+    '<circle class="sys-inner-node" cx="274" cy="274" r="6" style="animation-delay:.75s"/>'+
+    '<circle class="sys-inner-node" cx="250" cy="250" r="8" style="fill:var(--gold);animation-delay:1s"/>';
+  const labels = nodes.map(n=>'<text class="sys-label" x="'+n.x+'" y="'+(n.y+(n.y<250?-30:38))+'">'+n.l+'</text>').join('');
+  return '<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+
+    '<circle class="sys-core-ring" cx="250" cy="250" r="76"/>'+
+    edges+signals+outer+innerLines+innerNodes+labels+
+    '</svg>';
+}
+
+function pageHome(){
+  return '<section class="hero"><div class="wrap hero-grid"><div>'+
+    '<div class="eyebrow">AI · Data · Robotics</div>'+
+    '<h1 class="hero-title">Building Intelligent Systems Across <span class="hl">AI, Data, Software &amp; Robotics</span></h1>'+
+    '<p class="hero-sub">Mechatronics engineer with 4+ years spanning AI/ML, data science, automation, embedded systems and robotics. Delivering practical solutions that turn technical concepts into working systems.</p>'+
+    '<div class="hero-ctas">'+
+      '<a href="#projects" class="btn btn-primary" data-nav="projects">View Projects</a>'+
+      '<a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">'+icon('download',15)+' Resume PDF</a>'+
+    '</div>'+
+    '<div class="hero-socials">'+
+      '<a href="https://www.linkedin.com/in/sahla-sana-a9b8691b1" target="_blank" rel="noopener" class="icon-btn" aria-label="LinkedIn">'+icon('linkedin',18)+'</a>'+
+      '<a href="https://github.com/sahla1566" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub">'+icon('github',18)+'</a>'+
+      '<a href="mailto:sahlasana2000@gmail.com" class="icon-btn" aria-label="Email">'+icon('mail',18)+'</a>'+
+    '</div></div>'+
+    '<div class="neu-raised network-card">'+networkSVG()+'</div>'+
+    '</div><div class="wrap"><div class="domain-grid">'+
+      DOMAINS.map(d=>'<div class="neu-flat domain-card" data-nav="expertise" data-sub="'+d.link+'">'+
+        '<div class="domain-icon">'+icon(d.icon,22)+'</div><h3>'+d.title+'</h3><p>'+d.desc+'</p></div>').join('')+
+    '</div></div></section>';
+}
+
+function pageAbout(){
+  return '<section><div class="wrap">'+
+    '<div class="eyebrow">About</div><h2 class="section-title">Engineer, builder, systems thinker</h2>'+
+    '<div class="about-grid"><div class="about-text">'+
+      "<p>I'm a technology professional with a B.Tech in Mechatronics Engineering and hands-on experience across AI/ML, data science, automation, software development, embedded systems and robotics. My background sits deliberately at the intersection of these fields — most real problems don't respect silos, and neither do I.</p>"+
+      '<p>Day to day, I train learners in AI and programming, build automation systems for freelance clients, and develop embedded and robotics prototypes — moving between a Python notebook and a microcontroller in the same afternoon.</p>'+
+      '<p>I care about systems that are explainable, maintainable and actually shipped — not just proofs of concept that sit in a drawer.</p>'+
+      '<div class="stat-grid">'+
+        '<div class="neu-flat stat-card"><div class="stat-num mono-stat">4+</div><div class="stat-label">Years of Experience</div></div>'+
+        '<div class="neu-flat stat-card"><div class="stat-num mono-stat">20+</div><div class="stat-label">Projects Delivered</div></div>'+
+        '<div class="neu-flat stat-card"><div class="stat-num mono-stat">15+</div><div class="stat-label">Technologies</div></div>'+
+        '<div class="neu-flat stat-card"><div class="stat-num mono-stat">50+</div><div class="stat-label">Learners Trained</div></div>'+
+      '</div></div>'+
+      '<div class="neu-raised about-panel"><h4>Quick Timeline</h4><ul class="timeline-mini">'+
+        '<li><div class="tm-dot"></div><div><div class="tm-year">2025</div><div class="tm-title">AI &amp; Robotics Trainer — Future Minds</div></div></li>'+
+        '<li><div class="tm-dot"></div><div><div class="tm-year">2025</div><div class="tm-title">Freelance AI Automation Developer</div></div></li>'+
+        '<li><div class="tm-dot"></div><div><div class="tm-year">2024</div><div class="tm-title">Data Analytics — Boston Institute</div></div></li>'+
+        '<li><div class="tm-dot"></div><div><div class="tm-year">2023-24</div><div class="tm-title">Embedded Engineer — Evolve Robotics</div></div></li>'+
+        '<li><div class="tm-dot"></div><div><div class="tm-year">2022</div><div class="tm-title">B.Tech, Mechatronics Engineering</div></div></li>'+
+      '</ul></div>'+
+    '</div></div></section>';
+}
+
+function pageExpertise(){
+  const keys = Object.keys(EXPERTISE);
+  return '<section><div class="wrap">'+
+    '<div class="breadcrumb"><a href="#home" data-nav="home">Home</a> / Expertise</div>'+
+    '<div class="eyebrow">Expertise</div><h2 class="section-title">Six domains, one system</h2>'+
+    '<p class="section-lead">Each area is a working discipline — click through to see the skills and tools behind it.</p>'+
+    '<div class="expertise-tabs">'+keys.map((k,i)=>'<button class="tab-btn '+(i===0?'active':'')+'" data-tab="'+k+'">'+EXPERTISE[k].title+'</button>').join('')+'</div>'+
+    keys.map((k,i)=>'<div class="expertise-panel '+(i===0?'active':'')+'" data-panel="'+k+'">'+
+      '<div class="exp-desc"><h3>'+EXPERTISE[k].title+'</h3><p>'+EXPERTISE[k].desc+'</p>'+
+      '<div class="chip-row">'+EXPERTISE[k].skills.map(s=>'<span class="neu-pill chip">'+s+'</span>').join('')+'</div></div>'+
+      '<div class="neu-flat exp-tools"><h4>Tools &amp; Technologies</h4>'+
+      '<div class="chip-row">'+EXPERTISE[k].tools.map(t=>'<span class="neu-pill chip">'+t+'</span>').join('')+'</div></div></div>').join('')+
+    '</div></section>';
+}
+
+function pageProgramming(){
+  const groups = [['web','Web'],['aidata','AI / Data'],['embedded-lang','Embedded']];
+  return '<section><div class="wrap">'+
+    '<div class="breadcrumb"><a href="#home" data-nav="home">Home</a> / Programming</div>'+
+    '<div class="eyebrow">Programming</div><h2 class="section-title">Languages, organized by what they build</h2>'+
+    '<p class="section-lead">A visual map of the languages I use, grouped by the kind of system they power.</p>'+
+    groups.map(([key,label])=>'<div class="prog-group" id="prog-'+key+'"><h3>'+label+'</h3><div class="prog-grid">'+
+      PROGRAMMING[key].map(p=>'<div class="neu-flat prog-card"><div class="prog-top"><div class="prog-icon">'+p.tag+'</div><h4>'+p.name+'</h4></div>'+
+        '<p>'+p.desc+'</p><div class="prog-related">→ '+p.related+'</div></div>').join('')+
+    '</div></div>').join('')+
+    '</div></section>';
+}
+
+function projectCard(p, idx){
+  return '<div class="neu-flat project-card" data-idx="'+idx+'" data-search="'+(p.title+' '+p.desc+' '+p.tech.join(' ')).toLowerCase()+'" data-cats="'+p.cats.join(',')+'">'+
+    '<div class="project-thumb">'+projectVisualSVG(p)+'</div>'+
+    '<div class="project-body"><div class="project-cat">'+p.platform+' · '+p.cats.join(' / ')+'</div>'+
+    '<h3>'+p.title+'</h3><p>'+p.desc+'</p>'+
+    '<div class="tech-row">'+p.tech.map(t=>'<span class="tech-tag">'+t+'</span>').join('')+'</div>'+
+    '<div class="project-actions"><button class="link-btn" data-open-case="'+idx+'">Case Study '+icon('external',13)+'</button></div>'+
+    '</div></div>';
+}
+
+function pageProjects(){
+  const cats = ['All','AI','ML','Data Science','AI Automation','Embedded','Robotics','IoT','Automation'];
+  return '<section><div class="wrap">'+
+    '<div class="breadcrumb"><a href="#home" data-nav="home">Home</a> / Projects</div>'+
+    '<div class="eyebrow">Projects</div><h2 class="section-title">Selected work across AI, data, embedded systems and robotics</h2>'+
+    '<p class="section-lead">Click any project card to explore the full case study — problem, approach, results and lessons learned.</p>'+
+    '<div class="project-controls"><div class="neu-pressed search-box">'+icon('search',15)+
+      '<input type="text" id="projectSearch" placeholder="Search projects, tech…"></div></div>'+
+    '<div class="filter-row" id="filterRow">'+cats.map((c,i)=>'<button class="filter-chip '+(i===0?'active':'')+'" data-filter="'+c+'">'+c+'</button>').join('')+'</div>'+
+    '<div class="project-grid" id="projectGrid">'+PROJECTS.map((p,i)=>projectCard(p,i)).join('')+'</div>'+
+    '</div></section>';
+}
+
+function pageExperience(){
+  return '<section><div class="wrap">'+
+    '<div class="breadcrumb"><a href="#home" data-nav="home">Home</a> / Experience</div>'+
+    '<div class="eyebrow">Experience</div><h2 class="section-title">Where the work has happened</h2>'+
+    '<div class="timeline">'+EXPERIENCE.map(e=>'<div class="tl-entry"><div class="tl-marker"></div>'+
+      '<div class="neu-flat tl-card"><div class="tl-date">'+e.date+'</div><div class="tl-role">'+e.role+'</div>'+
+      '<div class="tl-org">'+e.org+'</div><ul class="tl-list">'+e.points.map(p=>'<li>'+p+'</li>').join('')+'</ul>'+
+      '<div class="tl-tech">'+e.tech.map(t=>'<span class="neu-pill chip">'+t+'</span>').join('')+'</div></div></div>').join('')+
+    '</div></div></section>';
+}
+
+function pageEducation(){
+  return '<section><div class="wrap">'+
+    '<div class="breadcrumb"><a href="#home" data-nav="home">Home</a> / Education</div>'+
+    '<div class="eyebrow">Education &amp; Certifications</div><h2 class="section-title">Formal training and continued learning</h2>'+
+    '<div class="neu-raised edu-top"><div class="edu-top-inner"><div class="edu-icon">'+icon('building',24)+'</div>'+
+      '<div><h3>'+EDUCATION.degree.title+'</h3><p>'+EDUCATION.degree.sub+' <a href="'+EDUCATION.degree.link+'" target="_blank" rel="noopener" class="edu-link">Visit College →</a></p></div>'+
+    '</div></div>'+
+    '<div id="accordionList">'+EDUCATION.categories.map((c,i)=>'<div class="neu-flat accordion-item" data-acc="'+i+'">'+
+      '<div class="accordion-head">'+c.name+' '+icon('chev',14)+'</div>'+
+      '<div class="accordion-body"><div class="accordion-inner">'+c.items.map(it=>'<span class="neu-pill chip">'+it+'</span>').join('')+'</div></div></div>').join('')+
+    '</div></div></section>';
+}
+
+function pageResume(){
+  const skillGroups = [
+    ['AI / ML',['Generative AI','LLM','Prompt Engineering','YOLOv8','TensorFlow Lite','OpenCV','AI Automation']],
+    ['Data Science',['Python','Pandas','NumPy','SQL','MySQL','Plotly','Matplotlib','Power BI','Tableau']],
+    ['Automation',['Make.com','Zapier','n8n','UiPath','Power Automate','AI Workflows','OCR','Chatbots']],
+    ['Embedded / Robotics',['Arduino','ESP32','STM32','PIC16F877A','Raspberry Pi','C','C++','MicroPython']],
+    ['Cloud & Dev',['Azure AI Studio','Azure OpenAI','Azure Machine Learning','Git','MLflow']],
+    ['Web & Programming',['Python','HTML','CSS','JavaScript','PHP']],
+  ];
+  return '<section><div class="wrap">'+
+    '<div class="breadcrumb"><a href="#home" data-nav="home">Home</a> / Resume</div>'+
+    '<div class="eyebrow">Resume</div><h2 class="section-title">Full resume and skills</h2>'+
+    '<div class="resume-layout"><div class="neu-raised resume-side"><h4>Actions</h4>'+
+      '<a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">'+icon('download',15)+' View / Download PDF</a>'+
+      '<a href="mailto:sahlasana2000@gmail.com" class="btn btn-ghost">'+icon('mail',15)+' Email Me</a>'+
+      '<p class="resume-note">resume.pdf sits alongside this page in the same folder — keep it there when you deploy.</p>'+
+    '</div><div>'+
+      '<div class="resume-block"><h3>Professional Summary</h3><div class="neu-flat"><p style="color:var(--text-soft);font-size:14.5px;">AI Engineer and Mechatronics graduate with 4+ years of combined experience in AI automation, embedded systems, robotics, software development and technical training. Skilled in developing LLM-powered applications, AI workflows, intelligent automation, API integrations, computer vision solutions and data-driven systems. Strong analytical and problem-solving skills with experience translating business and technical requirements into practical AI solutions.</p></div></div>'+
+      '<div class="resume-block"><h3>Core Technical Skills</h3><div class="neu-flat">'+
+        skillGroups.map(([cat,skills])=>'<div class="res-skill-cat"><span class="k">'+cat+'</span><div class="chip-row">'+skills.map(s=>'<span class="neu-pill chip">'+s+'</span>').join('')+'</div></div>').join('')+
+      '</div></div>'+
+      '<div class="resume-block"><h3>Experience Highlights</h3><div class="neu-flat">'+
+        EXPERIENCE.map(e=>'<div style="margin-bottom:16px;"><span class="k" style="font-weight:600;font-size:13.5px;">'+e.role+' — '+e.org+'</span><div style="font-size:12px;color:var(--text-faint);font-family:var(--font-mono);margin-bottom:6px;">'+e.date+'</div><ul style="font-size:12.5px;color:var(--text-soft);margin-left:16px;"><li style="margin-bottom:4px;">'+e.points[0]+'</li></ul></div>').join('')+
+      '</div></div>'+
+      '<div class="resume-block"><h3>Featured Projects</h3><div class="neu-flat"><div class="chip-row">'+PROJECTS.slice(0,4).map(p=>'<span class="neu-pill chip">'+p.title+'</span>').join('')+'</div></div></div>'+
+    '</div></div></div></section>';
+}
+
+function pageGithub(){
+  return '<section class="section-alt"><div class="wrap">'+
+    '<div class="eyebrow">GitHub</div><h2 class="section-title">Selected repositories</h2>'+
+    '<p class="section-lead">Open-source projects and code samples across AI, data science, automation and embedded systems.</p>'+
+    '<div class="repo-grid">'+REPOS.map(r=>'<div class="neu-flat repo-card"><div class="repo-top"><h4>'+r.name+'</h4>'+
+      '<a href="https://github.com/sahla1566/'+r.name+'" target="_blank" rel="noopener">'+icon('github',16)+'</a></div>'+
+      '<p>'+r.desc+'</p><div class="tech-row">'+r.lang.map(l=>'<span class="tech-tag">'+l+'</span>').join('')+'</div></div>').join('')+
+    '</div></div></section>';
+}
+
+function pageContact(){
+  return '<section><div class="wrap">'+
+    '<div class="breadcrumb"><a href="#home" data-nav="home">Home</a> / Contact</div>'+
+    '<div class="contact-grid"><div class="contact-info">'+
+      '<div class="eyebrow">Contact</div><h2>Let&#39;s Build Something Intelligent</h2>'+
+      '<p>Open to freelance and contract work across AI, data science and automation. Reach out through any channel below — I respond within 24 hours.</p>'+
+      '<div class="contact-links">'+
+        '<a href="mailto:sahlasana2000@gmail.com" class="neu-flat contact-link"><div class="ic">'+icon('mail',18)+'</div><div><div class="lbl">Email</div><div class="val">sahlasana2000@gmail.com</div></div></a>'+
+        '<a href="https://www.linkedin.com/in/sahla-sana-a9b8691b1" target="_blank" rel="noopener" class="neu-flat contact-link"><div class="ic">'+icon('linkedin',18)+'</div><div><div class="lbl">LinkedIn</div><div class="val">/in/sahla-sana-a9b8691b1</div></div></a>'+
+        '<a href="https://github.com/sahla1566" target="_blank" rel="noopener" class="neu-flat contact-link"><div class="ic">'+icon('github',18)+'</div><div><div class="lbl">GitHub</div><div class="val">/sahla1566</div></div></a>'+
+        '<div class="neu-flat contact-link"><div class="ic">'+icon('pin',18)+'</div><div><div class="lbl">Location</div><div class="val">Ajman, UAE</div></div></div>'+
+      '</div></div>'+
+      '<form class="neu-raised contact-form" id="contactForm">'+
+        '<div class="form-row"><label for="cf-name">Your Name</label><input id="cf-name" required placeholder="Full name"></div>'+
+        '<div class="form-row"><label for="cf-email">Your Email</label><input id="cf-email" type="email" required placeholder="you@example.com"></div>'+
+        '<div class="form-row"><label for="cf-msg">Message</label><textarea id="cf-msg" required placeholder="Tell me about your project or opportunity…"></textarea></div>'+
+        '<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>'+
+        '<div class="form-msg" id="formMsg">Message received — I&#39;ll get back to you shortly.</div>'+
+      '</form>'+
+    '</div></div></section>';
+}
+
+const PAGES = {
+  home:pageHome, about:pageAbout, expertise:pageExpertise, programming:pageProgramming,
+  projects:pageProjects, experience:pageExperience, education:pageEducation, resume:pageResume,
+  github:pageGithub, contact:pageContact
+};
+
+let currentPage = 'home';
+function render(pageId, sub){
+  if(!PAGES[pageId]) pageId='home';
+  currentPage = pageId;
+  document.getElementById('main').innerHTML = '<div class="page active">'+PAGES[pageId]()+'</div>';
+  window.scrollTo({top:0, behavior:'instant'});
+  document.querySelectorAll('[data-nav]').forEach(el=>{
+    el.classList.toggle('active', el.dataset.nav===pageId && el.classList.contains('nav-link'));
+  });
+  attachPageHandlers(pageId, sub);
+  closeMobile();
+}
+
+function go(pageId, sub){
+  location.hash = pageId;
+  render(pageId, sub);
+}
+
+document.addEventListener('click', e=>{
+  const navEl = e.target.closest('[data-nav]');
+  if(navEl){
+    e.preventDefault();
+    go(navEl.dataset.nav, navEl.dataset.sub);
+    return;
+  }
+});
+
+window.addEventListener('hashchange', ()=>{
+  const id = location.hash.replace('#','') || 'home';
+  render(id);
+});
+
+function attachPageHandlers(pageId, sub){
+  if(pageId==='expertise'){
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.expertise-panel');
+    function activate(key){
+      tabs.forEach(t=>t.classList.toggle('active', t.dataset.tab===key));
+      panels.forEach(p=>p.classList.toggle('active', p.dataset.panel===key));
+    }
+    tabs.forEach(t=>t.addEventListener('click', ()=>activate(t.dataset.tab)));
+    if(sub && EXPERTISE[sub]) activate(sub);
+  }
+
+  if(pageId==='programming' && sub){
+    const target = document.getElementById('prog-'+sub);
+    if(target) setTimeout(()=>target.scrollIntoView({behavior:'smooth', block:'start'}), 60);
+  }
+
+  if(pageId==='projects'){
+    setupProjectFilters();
+  }
+
+  if(pageId==='education'){
+    document.querySelectorAll('.accordion-item').forEach(item=>{
+      item.querySelector('.accordion-head').addEventListener('click', ()=>{
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.accordion-item').forEach(i=>i.classList.remove('open'));
+        if(!wasOpen) item.classList.add('open');
+      });
+    });
+  }
+
+  if(pageId==='contact'){
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      document.getElementById('formMsg').classList.add('show');
+      setTimeout(()=>{
+        form.reset();
+        document.getElementById('formMsg').classList.remove('show');
+      }, 3000);
+    });
+  }
+
+  document.querySelectorAll('[data-open-case]').forEach(btn=>{
+    btn.addEventListener('click', ()=>openCase(parseInt(btn.dataset.openCase)));
+  });
+}
+
+function setupProjectFilters(){
+  const grid = document.getElementById('projectGrid');
+  const search = document.getElementById('projectSearch');
+  const chips = document.querySelectorAll('.filter-chip');
+  let activeFilter = 'All';
+
+  function apply(){
+    const q = search.value.trim().toLowerCase();
+    let visible = 0;
+    document.querySelectorAll('.project-card').forEach(card=>{
+      const cats = card.dataset.cats.split(',');
+      const matchesFilter = activeFilter==='All' || cats.includes(activeFilter);
+      const matchesSearch = !q || card.dataset.search.includes(q);
+      const show = matchesFilter && matchesSearch;
+      card.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+    let noRes = grid.querySelector('.no-results');
+    if(visible===0){
+      if(!noRes){
+        noRes = document.createElement('div');
+        noRes.className='no-results';
+        noRes.textContent='No projects match that search or filter.';
+        grid.appendChild(noRes);
+      }
+    } else if(noRes){
+      noRes.remove();
+    }
+  }
+  chips.forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      chips.forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      apply();
+    });
+  });
+  search.addEventListener('input', apply);
+}
+
+function openCase(idx){
+  const p = PROJECTS[idx];
+  const c = p.case;
+  const visual = projectVisualSVG(p);
+  const caption = visualCaption(p);
+
+  const githubBtn = (p.github && p.github!=='#')
+    ? '<a href="'+p.github+'" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">'+icon('github',15)+' GitHub</a>'
+    : '';
+  const statusNote = '<div class="status-note">'+icon('info',16)+'<span>'+p.status+'</span></div>';
+
+  document.getElementById('modalBox').innerHTML =
+    '<button class="icon-btn modal-close" id="modalCloseBtn"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>'+
+    '<h3>'+p.title+'</h3>'+
+    '<div class="modal-cat">'+p.platform+' · '+p.cats.join(' / ')+'</div>'+
+    '<div class="modal-visual">'+visual+'</div>'+
+    '<div class="visual-caption">'+caption+'</div>'+
+    '<div class="case-block"><h5>Problem</h5><p>'+c.problem+'</p></div>'+
+    '<div class="case-block"><h5>Objective</h5><p>'+c.objective+'</p></div>'+
+    '<div class="case-block"><h5>Architecture</h5><p>'+c.architecture+'</p></div>'+
+    '<div class="case-block"><h5>Technologies</h5><p>'+c.technologies+'</p></div>'+
+    '<div class="case-block"><h5>Hardware</h5><p>'+c.hardware+'</p></div>'+
+    '<div class="case-block"><h5>Software</h5><p>'+c.software+'</p></div>'+
+    '<div class="case-block"><h5>Implementation</h5><p>'+c.implementation+'</p></div>'+
+    '<div class="case-block"><h5>Results</h5><p>'+c.results+'</p></div>'+
+    '<div class="case-block"><h5>Challenges</h5><p>'+c.challenges+'</p></div>'+
+    '<div class="case-block"><h5>Future Work</h5><p>'+c.future+'</p></div>'+
+    '<div class="modal-tech">'+p.tech.map(t=>'<span class="tech-tag">'+t+'</span>').join('')+'</div>'+
+    '<div class="modal-actions">'+githubBtn+statusNote+'</div>';
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('modalCloseBtn').addEventListener('click', closeCase);
+}
+function closeCase(){ document.getElementById('modalOverlay').classList.remove('open'); }
+document.getElementById('modalOverlay').addEventListener('click', e=>{
+  if(e.target.id==='modalOverlay') closeCase();
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCase(); });
+
+function closeMobile(){ document.getElementById('mobileDrawer').classList.remove('open'); }
+document.getElementById('menuToggle').addEventListener('click', ()=>document.getElementById('mobileDrawer').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click', closeMobile);
+
+buildNav();
+render(location.hash.replace('#','') || 'home');
+</script>
+</body>
+</html>
